@@ -9,13 +9,13 @@ FROM adoptopenjdk:11-jre-hotspot
 #WORKDIR /app
 ARG JAR_FILE=target/*.jar
 # Copy the Spring Boot application JAR file to the container
-COPY ${JAR_FILE} loan-service-v1.jar
+COPY ${JAR_FILE} loan-service.jar
 
 # Expose port 8085 for the application
 EXPOSE 8082
 
 # Define the command to run the application
-CMD ["java", "-jar", "loan-service-v1.jar"]
+CMD ["java", "-jar", "loan-service.jar"]
 
 # build and run docker image
 #1. cd /mnt/d/Bank\ Service/laon-service

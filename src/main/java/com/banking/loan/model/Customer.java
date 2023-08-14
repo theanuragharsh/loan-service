@@ -1,4 +1,4 @@
-package com.bankng.loan.model;
+package com.banking.loan.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +10,6 @@ import lombok.ToString;
 @ToString
 public class Customer {
 
-    private int customerId;
+    private long customerId;
 
 }

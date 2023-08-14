@@ -1,4 +1,4 @@
-package com.bankng.loan.config;
+package com.banking.loan.config;
 
 import lombok.Getter;
 import lombok.Setter;

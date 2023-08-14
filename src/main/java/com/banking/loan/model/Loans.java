@@ -1,4 +1,4 @@
-package com.bankng.loan.model;
+package com.banking.loan.model;
 
 import java.sql.Date;
 
@@ -21,10 +21,10 @@ public class Loans {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "loan_number")
-    private int loanNumber;
+    private long loanNumber;
 
     @Column(name = "customer_id")
-    private int customerId;
+    private long customerId;
 
     @Column(name = "start_dt")
     private Date startDt;

@@ -1,4 +1,4 @@
-package com.bankng.loan.model;
+package com.banking.loan.model;
 
 import lombok.Getter;
 import lombok.Setter;
