@@ -53,7 +53,7 @@ public class LoanController {
     @GetMapping("/{customerId}")
     public List<Loans> getLoansDetailsByCustomerId(@PathVariable Long customerId) {
         log.debug("inside loan-service : fetching loan details for customerId: {}", customerId);
-        return List.of(loanRepository.findById(customerId).get());
+        return loanRepository.findByCustomerIdOrderByStartDtDesc(customerId);
     }
 
 }
