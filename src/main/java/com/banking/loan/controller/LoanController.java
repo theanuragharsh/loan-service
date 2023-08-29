@@ -41,6 +41,7 @@ public class LoanController {
 
     @PostMapping("/myLoans")
     public List<Loans> getLoansDetails(@RequestBody Customer customer) {
+        log.info("inside loan service..");
         List<Loans> loans = loanRepository.findByCustomerIdOrderByStartDtDesc(customer.getCustomerId());
         if (loans != null) {
             log.info("inside getLoanDetails : " + loans.toString());
