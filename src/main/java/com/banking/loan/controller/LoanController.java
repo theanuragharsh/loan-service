@@ -5,6 +5,7 @@ import com.banking.loan.model.Customer;
 import com.banking.loan.model.Loans;
 import com.banking.loan.model.Properties;
 import com.banking.loan.repo.LoanRepo;
+import com.banking.loan.service.LoanService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -29,6 +30,7 @@ import java.util.List;
 public class LoanController {
 
     private final LoanRepo loanRepository;
+    private final LoanService loanService;
     private final LoanServiceConfig loanServiceConfig;
 
     @GetMapping("/properties")
@@ -40,7 +42,8 @@ public class LoanController {
     }
 
     @PostMapping("/myLoans")
-    public List<Loans> getLoansDetails(@RequestBody Customer customer) {
+    public List<Loans> getLoansDetails(@RequestHeader("correlation-id") String correlationId, @RequestBody Customer customer) {
+        log.debug("correlation-id : {}", correlationId);
         log.info("inside loan service..");
         List<Loans> loans = loanRepository.findByCustomerIdOrderByStartDtDesc(customer.getCustomerId());
         if (loans != null) {
@@ -51,10 +54,10 @@ public class LoanController {
         }
     }
 
+    //    This method is being used by customer-service
     @GetMapping("/{customerId}")
-    public List<Loans> getLoansDetailsByCustomerId(@PathVariable Long customerId) {
-        log.debug("inside loan-service : fetching loan details for customerId: {}", customerId);
-        return loanRepository.findByCustomerIdOrderByStartDtDesc(customerId);
+    public List<Loans> getLoansDetailsByCustomerId(@RequestHeader("correlation-id") String correlationId, @PathVariable Long customerId) {
+        return loanService.getLoansDetailsByCustomerId(correlationId,customerId);
     }
 
 }
